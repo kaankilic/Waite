@@ -1,0 +1,32 @@
+{
+   "name":"kaankilic/waite",
+   "description":"Laravel 5.x - Github based application update and versioning library",
+   "license":"MIT",
+   "authors":[
+      {
+         "name":"Kaan Kılıç",
+         "email":"bl4cksta@gmail.com"
+      }
+   ],
+   "require":{
+      "php":">=5.5.9"
+   },
+   "require-dev":{
+      "phpunit/phpunit":"^4.8 || ^5.0",
+      "orchestra/testbench":"^3.0",
+      "mockery/mockery":"^0.9.4"
+   },
+   "autoload":{
+      "psr-4":{
+         "Kaankilic\\Waite\\":"src/"
+      }
+   },
+   "autoload-dev":{
+      "psr-4":{
+         "Kaankilic\\Waite\\Tests\\":"tests/"
+      }
+   },
+   "scripts":{
+      "test":"phpunit"
+   }
+}
