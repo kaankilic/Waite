@@ -3,6 +3,7 @@
    "description":"Laravel 5.x - Github based application update and versioning library",
    "license":"MIT",
    "minimum-stability":"dev",
+   "prefer-stable": true,
    "authors":[
       {
          "name":"Kaan Kılıç",
