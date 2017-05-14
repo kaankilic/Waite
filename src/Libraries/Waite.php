@@ -29,7 +29,7 @@ class Waite{
 	}
 	public static function update(){
 		if (self::hasVersion()) {
-			Storage::disk("upload")->put($this->getLatestPackage,"latest_version.zip");
+			Storage::disk("upload")->put(self::getLatestPackage,"latest_version.zip");
 			Zipper::make('latest_version.zip')->extractTo('/', array('vendor','config'), Zipper::BLACKLIST);
 		}
 	}
