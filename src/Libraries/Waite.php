@@ -14,14 +14,14 @@ class Waite{
 		return Storage::disk("upload")->get("VERSION.md");
 	}
 	public function setCurrentVersion($currentVersion){
-		$this->currentVersion = $currentVersion;
+		self::$currentVersion = $currentVersion;
 	}
 	public function getLatestVersion(){
 		$client = new \GuzzleHttp\Client();	
 		$res = $client->request('GET', "https://api.github.com/".self::GITHUB_TAGS_ENDPONT);
 		if ($res->getStatusCode()==200) {
-			self::latestVersion = $res->getBody->tag_name;
-			self::latestPackage = $res->getBody->zipball_url;
+			self::$latestVersion = $res->getBody->tag_name;
+			self::$latestPackage = $res->getBody->zipball_url;
 		}
 	}
 	private function hasVersion(){
