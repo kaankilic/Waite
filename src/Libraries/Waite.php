@@ -20,12 +20,12 @@ class Waite{
 		$client = new \GuzzleHttp\Client();	
 		$res = $client->request('GET', "https://api.github.com/".self::GITHUB_TAGS_ENDPONT);
 		if ($res->getStatusCode()==200) {
-			$this->latestVersion = $res->getBody->tag_name;
-			$this->latestPackage = $res->getBody->zipball_url;
+			self::latestVersion = $res->getBody->tag_name;
+			self::latestPackage = $res->getBody->zipball_url;
 		}
 	}
 	private function hasVersion(){
-		return version_compare($this->getCurrentVersion(),$this->getLatestVersion(),"<");
+		return version_compare(self::getCurrentVersion(),self::getLatestVersion(),"<");
 	}
 	public static function update(){
 		if (self::hasVersion()) {
