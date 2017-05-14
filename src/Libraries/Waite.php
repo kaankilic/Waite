@@ -11,7 +11,7 @@ class Waite{
 	protected $isSuccessful;
 
 	private static function getCurrentVersion(){
-		$version = Storage::disk("local")->get("VERSION.md");
+		$version = trim(Storage::disk("local")->get("VERSION.md"));
 		return $version;
 	}
 	private static function getEndpoint(){
@@ -21,16 +21,17 @@ class Waite{
 		$client = new \GuzzleHttp\Client();	
 		$res = $client->request('GET', self::getEndpoint(),['headers'=>['Accept'=>'application/vnd.github.v3+json']]);
 		if ($res->getStatusCode()==200) {
-			self::$latestVersion = json_decode($res->getBody())->tag_name;
+			return json_decode($res->getBody())->tag_name;
 			self::$latestPackage = json_decode($res->getBody())->zipball_url;
 		}
+		return false;
 	}
 	private static function hasVersion(){
 		return version_compare(self::getCurrentVersion(),self::getLatestVersion(),"<");
 	}
 	public static function update(){
 		if (self::hasVersion()) {
-			Storage::disk("local")->put(self::getLatestPackage,"latest_version.zip");
+			Storage::disk("local")->put(self::$latestPackage,"latest_version.zip");
 			Zipper::make('latest_version.zip')->extractTo('/', array('vendor','config','storage','public'), Zipper::BLACKLIST);
 		}else{
 			echo 'already updated';
