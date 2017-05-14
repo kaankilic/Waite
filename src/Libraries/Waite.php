@@ -28,7 +28,7 @@ class Waite{
 		return version_compare($this->getCurrentVersion(),$this->getLatestVersion(),"<");
 	}
 	public static function update(){
-		if ($this->hasVersion()) {
+		if (self::hasVersion()) {
 			Storage::disk("upload")->put($this->getLatestPackage,"latest_version.zip");
 			Zipper::make('latest_version.zip')->extractTo('/', array('vendor','config'), Zipper::BLACKLIST);
 		}
