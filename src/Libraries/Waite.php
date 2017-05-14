@@ -7,7 +7,7 @@ class Waite{
 	public $latestVersion;
 	public $latestPackage;
 	protected $isSuccessful;
-	protected checkForVersions(){
+	protected  function checkForVersions(){
 		$URL = "http://github.com";
 	}
 	public function getCurrentVersion(){
