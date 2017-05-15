@@ -13,7 +13,6 @@ class WaiteServiceProvider extends ServiceProvider {
     $this->publishes([
       __DIR__.'/../../config/waite.php' => config_path('waite.php')
     ]);
-   $this->app->bind('Waite', 'Kaankilic\Waite\Libraries\Waite' );
   }
  
   /**

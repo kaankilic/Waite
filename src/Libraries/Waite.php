@@ -31,7 +31,7 @@ class Waite{
 	}
 	public static function update(){
 		if (self::hasVersion()) {
-			Storage::disk("local")->put(self::$latestPackage,"latest_version.zip");
+			Storage::disk("local")->put(file_get_contents(self::$latestPackage),"latest_version.zip");
 			Zipper::make('latest_version.zip')->extractTo('/', array('vendor','config','storage','public'), Zipper::BLACKLIST);
 		}else{
 			echo 'already updated';
